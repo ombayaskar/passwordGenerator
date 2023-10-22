@@ -1,0 +1,31 @@
+import java.security.SecureRandom.*;
+import java.security.SecureRandom;
+
+public class RandoomPasswordGenerator {
+    public static void main(String[] args) {
+        int passwordLength = 12; 
+        String password = generateRandomPassword(passwordLength);
+        System.out.println("Random Password: " + password);
+    }
+
+    
+    public static String generateRandomPassword(int length) {
+        String upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
+        String digits = "0123456789";
+        String specialChars = "!@#$%^&*()-_=+[]{}|;:,.<>?";
+
+        String allChars = upperCaseChars + lowerCaseChars + digits + specialChars;
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(allChars.length());
+            char randomChar = allChars.charAt(randomIndex);
+            password.append(randomChar);
+        }
+
+        return password.toString();
+    }
+}
